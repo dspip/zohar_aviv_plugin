@@ -27,8 +27,8 @@ RUN apt-get install -y gcc
 RUN apt-get install -y g++
 RUN apt-get autoremove -y
 
-RUN mkdir -p /app/VideoWebCore
-WORKDIR /app/VideoWebCore
+RUN mkdir -p /app/
+WORKDIR /app/
 
 COPY . .
 
