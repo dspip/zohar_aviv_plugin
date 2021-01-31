@@ -4,7 +4,9 @@
 
 ## rtph264pass
 
-this repo include a plugin called rtph264pass, that serves as a direct replacement for rtph264depay. the plugin is meant to deal with invalid rtp h264 packets, where h264 was sliced and inserted into rtp packets without proper nal-u. the plugin extracts the rtp payload buffer without parsing nal type
+this repo include a plugin called rtph264pass, that serves as a direct replacement for rtph264depay. the plugin is meant to deal with invalid rtp h264 packets, where h264 was sliced and inserted into rtp packets without proper nal-u.
+
+the plugin extracts the rtp payload buffer and passes it forward as is.
 
 ### usage:
 
@@ -45,7 +47,6 @@ after compilation, the plugin should appear when using `gst-inspect-1.0`:
 
 ```
 $ gst-inspect-1.0 rtph264pass
-
 ```
 
 for a more comprehensive guide, including prerequisites follow dockerfile.
