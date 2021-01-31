@@ -37,7 +37,7 @@ RUN mkdir build && cd build \
     && cmake --build . --config Release --target all -- -j 18 \
     && make install
 
-# CMD gst-launch-1.0 filesrc location="./videos/h264FirstSensorD.pcap" ! pcapparse dst-ip=10.201.41.100 dst-port=5002 ! rtph264pass ! h264parse ! avdec_h264 ! autovideosink
+CMD gst-launch-1.0 filesrc location="./videos/h264FirstSensorD.pcap" ! pcapparse dst-ip=10.201.41.100 dst-port=5002 ! rtph264pass ! h264parse ! avdec_h264 ! autovideosink
 
 # CMD gst-launch-1.0 udpsrc address=239.3.0.1 port=6001 ! capsfilter caps="application/x-rtp, encoding-name=H264, clock-rate=90000" ! rtpjitterbuffer ! rtph264pass ! h264parse ! avdec_h264 ! autovideosink -v
 
