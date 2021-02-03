@@ -126,10 +126,6 @@ gst_rtph264pass_class_init(Gstrtph264passClass *klass) {
     gobject_class->set_property = gst_rtph264pass_set_property;
     gobject_class->get_property = gst_rtph264pass_get_property;
 
-    g_object_class_install_property(gobject_class, PROP_ENABLE,
-                                    g_param_spec_boolean("enable", "Enable", "enable plugin ?",
-                                                         FALSE, G_PARAM_READWRITE));
-
     gst_element_class_set_details_simple(gstelement_class,
                                          "rtph264pass",
                                          "FIXME:Generic",
