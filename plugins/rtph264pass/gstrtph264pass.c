@@ -210,6 +210,7 @@ gst_rtph264pass_sink_event(GstPad *pad, GstObject *parent, GstEvent *event) {
             ret = gst_pad_event_default(pad, parent, event);
             break;
     }
+    // gst_event_unref(event);
     return ret;
 }
 
@@ -222,22 +223,9 @@ gst_rtph264pass_chain(GstPad *pad, GstObject *parent, GstBuffer *buf) {
     gst_rtp_buffer_unmap(&rtpbuffer);
     pbuf->pts = buf->pts;
 
-    // this is to clone the buffer and send it forwards.
-    // GstMapInfo info;
-    // gst_buffer_map(pbuf, &info, GST_MAP_READ);
-
-    // GstBuffer *next = gst_buffer_new_allocate(NULL, info.size, NULL);
-    // GstMapInfo next_info;
-
-    // gst_buffer_map(next, &next_info, GST_MAP_READWRITE);
-    // memcpy(next_info.data, info.data, info.size);
-
-    // gst_buffer_unmap(next, &next_info);
-    // gst_buffer_unmap(pbuf, &info);
-    // next->pts = buf->pts;
-
-    return gst_pad_push(filter->srcpad, pbuf);
-    // return gst_pad_push(filter->srcpad, next);
+    GstFlowReturn ret = gst_pad_push(filter->srcpad, pbuf);
+    gst_buffer_unref(buf);
+    return ret;
 }
 
 /* entry point to initialize the plug-in
